@@ -6,38 +6,30 @@ import (
 	"github.com/RafaMarquesLearn/go-bank/models"
 )
 
-func createClients() ([5]string, [5]string) {
-	var cl1 [5]string
-	cl1[0] = "John Doe"
-	cl1[1] = "0001"
-	cl1[2] = "getin"
-	cl1[3] = "5000"
-	cl1[4] = "1"
-
-	var cl2 [5]string
-	cl2[0] = "Jane Doe"
-	cl2[1] = "0002"
-	cl2[2] = "iamgod"
-	cl2[3] = "12500"
-	cl2[4] = "1"
-
-	return cl1, cl2
-}
 func main() {
-	cli1, cli2 := createClients()
-	var client1 = models.Client{}
-	var client2 = models.Client{}
+	vl1 := []string{"John Doe", "0001", "getin", "5000", "true"}
+	var cl1 models.Client
+	cl1 = cl1.AddClient(vl1)
 
-	client1.AddClient(cli1)
-	client2.AddClient(cli2)
+	vl2 := []string{"Jane Doe", "0002", "iamgod", "12500", "true"}
+	var cl2 models.Client
+	cl2 = cl2.AddClient(vl2)
 
-	account := "0002"
+	vl3 := []string{"Jack", "0003", "broke", "0", "true"}
+	var cl3 models.Client
+	cl3 = cl3.AddClient(vl3)
+
+	account := 0001
 	password := "getin"
 
-	if client1.CheckClient(account, password) {
-		fmt.Println("ok")
-	} else {
-		fmt.Println("Nope")
+	lcli := []models.Client{}
+
+	lcli = append(lcli, cl1, cl2, cl3)
+
+	for _, lc := range lcli {
+		if lc.CheckClient(account, password) {
+			fmt.Println("OK!")
+		}
 	}
 
 }
